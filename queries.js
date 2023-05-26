@@ -13,8 +13,7 @@ const getUsers = (request, response) => {
     if (error) {
       throw error;
     }
-    response.status(200).json(results.rows);
-    return results.rows;
+    response.send(results);
   });
 };
 
