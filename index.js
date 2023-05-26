@@ -3,8 +3,15 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = process.env.PORT || 3001;
 const db = require("./queries");
+const cors = require("cors");
 
 app.get("/", (req, res) => res.type("html").send(html));
+
+app.use(
+  cors({
+    origin: "*",
+  })
+);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 
