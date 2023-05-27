@@ -25,9 +25,9 @@ app.use(
 app.get("/users", db.getUsers);
 
 app.post("/adduser", function (req, res) {
-  const userName = req.query.userName;
-  const contact = req.query.contact;
-  const experienceLevel = req.query.experienceLevel;
+  const userName = req.body.userName;
+  const contact = req.body.contact;
+  const experienceLevel = req.body.experienceLevel;
   db.addUser(
     {
       userName: userName,
