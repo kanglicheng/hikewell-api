@@ -28,12 +28,14 @@ app.post("/adduser", function (req, res) {
   const userName = req.query.userName;
   const contact = req.query.contact;
   const experienceLevel = req.query.experienceLevel;
-
-  res.send({
-    userName: userName,
-    contact: contact,
-    experienceLevel: experienceLevel,
-  });
+  db.addUser(
+    {
+      userName: userName,
+      contact: contact,
+      experienceLevel: experienceLevel,
+    },
+    res
+  );
 });
 
 const html = `
