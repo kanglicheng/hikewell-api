@@ -17,6 +17,13 @@ const getUsers = (request, response) => {
   });
 };
 
+const addUser = (request, response) => {
+  pool.query(
+    `INSERT INTO "Users"(userName, contact, experienceLevel) VALUES (${request.userName}, ${request.contact}, ${request.experienceLevel});`
+  );
+};
+
 module.exports = {
   getUsers,
+  addUser,
 };

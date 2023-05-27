@@ -24,6 +24,18 @@ app.use(
 
 app.get("/users", db.getUsers);
 
+app.post("/adduser", function (req, res) {
+  const userName = req.query.userName;
+  const contact = req.query.contact;
+  const experienceLevel = req.query.experienceLevel;
+
+  res.send({
+    userName: userName,
+    contact: contact,
+    experienceLevel: experienceLevel,
+  });
+});
+
 const html = `
 <!DOCTYPE html>
 <html>
