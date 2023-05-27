@@ -32,7 +32,7 @@ const addUser = (request, response) => {
 
 const deleteUser = (request, response) => {
   pool.query(
-    `DELETE FROM "Users" WHERE userID ='${request.userID}'`,
+    `DELETE FROM "Users" WHERE "userID" ='${request.userID}'`,
     (error, result) => {
       if (error) {
         throw error;
