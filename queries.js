@@ -18,8 +18,9 @@ const getUsers = (request, response) => {
 };
 
 const addUser = (request, response) => {
+  const { userName, contact, experienceLevel } = request;
   pool.query(
-    `INSERT INTO "Users" ("userName", "contact", "experienceLevel") VALUES ('cyc', 'chiyang.cheng@gmail.com', 5)`,
+    `INSERT INTO "Users" ("userName", "contact", "experienceLevel") VALUES ('${userName}', '${contact}', '${experienceLevel}')`,
     (error, result) => {
       if (error) {
         throw error;
