@@ -30,7 +30,20 @@ const addUser = (request, response) => {
   );
 };
 
+const deleteUser = (request, response) => {
+  pool.query(
+    `DELETE FROM "Users" WHERE userID ='${request.userID}'`,
+    (error, result) => {
+      if (error) {
+        throw error;
+      }
+      response.send(result);
+    }
+  );
+};
+
 module.exports = {
   getUsers,
   addUser,
+  deleteUser,
 };

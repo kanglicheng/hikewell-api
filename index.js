@@ -24,7 +24,7 @@ app.use(
 
 app.get("/users", db.getUsers);
 
-app.post("/adduser", function (req, res) {
+app.post("/addUser", function (req, res) {
   const userName = req.body.userName;
   const contact = req.body.contact;
   const experienceLevel = req.body.experienceLevel;
@@ -36,6 +36,10 @@ app.post("/adduser", function (req, res) {
     },
     res
   );
+});
+
+app.post("/deleteUser", function (req, res) {
+  db.deleteUser({ userID: req.body.userID }, res);
 });
 
 const html = `
