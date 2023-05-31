@@ -19,15 +19,16 @@ const getUsers = (request, response) => {
 
 const addUser = (request, response) => {
   const { userName, contact, experienceLevel } = request;
-  pool.query(
-    `INSERT INTO "Users" ("userName", "contact", "experienceLevel") VALUES ('tti', 'ty@tester.com', 5);`,
-    (error, result) => {
-      if (error) {
-        throw error;
-      }
-      response.send(result);
-    }
-  );
+  console.log(request, "request");
+  // pool.query(
+  //   `INSERT INTO "Users" ("userName", "contact", "experienceLevel") VALUES ('${userName}', '${contact}', ${experienceLevel});`,
+  //   (error, result) => {
+  //     if (error) {
+  //       throw error;
+  //     }
+  //     response.send(result);
+  //   }
+  // );
 };
 
 const deleteUser = (request, response) => {

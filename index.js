@@ -47,5 +47,9 @@ const html = `
 <html>
   <head>
     <title>Hello from Render!</title>
+  </head>
+  <body>
+    <div>Hello! </div>
+  </body>
 </html>
 `;
