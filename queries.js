@@ -44,10 +44,10 @@ const deleteTrail = (request, response) => {
 };
 
 const editTrail = (request, response) => {
-  const { name, city, state, lat, lng, distance } = request;
+  const { trailID, name, city, state, lat, lng, distance } = request;
   console.log(request, "request");
   pool.query(
-    `UPDATE "Trails" SET "name" = '${name}', "city" = '${city}', "state" = '${state}', "lat" = ${lat}, "lng" = ${lng}, "distance" = ${distance};`,
+    `UPDATE "Trails" SET "name" = '${name}', "city" = '${city}', "state" = '${state}', "lat" = ${lat}, "lng" = ${lng}, "distance" = ${distance} WHERE "trailID"=${trailID};`,
     (error, result) => {
       if (error) {
         throw error;
