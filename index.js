@@ -42,7 +42,7 @@ app.post("/deleteUser", function (req, res) {
   db.deleteUser({ userID: req.body.userID }, res);
 });
 
-app.post("/editUser", function (req, res) {
+app.put("/editUser", function (req, res) {
   const userName = req.body.userName;
   const contact = req.body.contact;
   const experienceLevel = req.body.experienceLevel;
@@ -82,7 +82,8 @@ app.post("/deleteTrail", function (req, res) {
   db.deleteTrail({ trailID: req.body.trailID }, res);
 });
 
-app.post("/editTrail", function (req, res) {
+app.put("/editTrail", function (req, res) {
+  const trailID = req.body.trailID;
   const name = req.body.name;
   const city = req.body.city;
   const state = req.body.state;
@@ -91,6 +92,7 @@ app.post("/editTrail", function (req, res) {
   const distance = req.body.distance;
   db.editTrail(
     {
+      trailID: trailID,
       name: name,
       city: city,
       state: state,
