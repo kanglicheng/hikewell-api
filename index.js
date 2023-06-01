@@ -42,6 +42,68 @@ app.post("/deleteUser", function (req, res) {
   db.deleteUser({ userID: req.body.userID }, res);
 });
 
+app.post("/editUser", function (req, res) {
+  const userName = req.body.userName;
+  const contact = req.body.contact;
+  const experienceLevel = req.body.experienceLevel;
+  db.editUser(
+    {
+      userName: userName,
+      contact: contact,
+      experienceLevel: experienceLevel,
+    },
+    res
+  );
+});
+
+app.get("/trails", db.getTrails);
+
+app.post("/addTrail", function (req, res) {
+  const name = req.body.name;
+  const city = req.body.city;
+  const state = req.body.state;
+  const lat = req.body.lat;
+  const lng = req.body.lng;
+  const distance = req.body.distance;
+  db.addTrail(
+    {
+      name: name,
+      city: city,
+      state: state,
+      lat: lat,
+      lng: lng,
+      distance: distance,
+    },
+    res
+  );
+});
+
+app.post("/deleteTrail", function (req, res) {
+  db.deleteTrail({ trailID: req.body.trailID }, res);
+});
+
+app.post("/editTrail", function (req, res) {
+  const name = req.body.name;
+  const city = req.body.city;
+  const state = req.body.state;
+  const lat = req.body.lat;
+  const lng = req.body.lng;
+  const distance = req.body.distance;
+  db.editTrail(
+    {
+      name: name,
+      city: city,
+      state: state,
+      lat: lat,
+      lng: lng,
+      distance: distance,
+    },
+    res
+  );
+});
+
+app.get("/maps", db.getMaps);
+
 const html = `
 <!DOCTYPE html>
 <html>
