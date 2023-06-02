@@ -108,6 +108,78 @@ app.get("/maps", db.getMaps);
 
 app.get("/trailMaps", db.getTrailMaps);
 
+app.post("/addMap", function (req, res) {
+  const title = req.body.title;
+  const url = req.body.url;
+  db.addMap(
+    {
+      title: title,
+      url: url,
+    },
+    res
+  );
+});
+
+app.post("/deleteMap", function (req, res) {
+  db.deleteMap({ mapID: req.body.mapID }, res);
+});
+
+app.get("/reviews", db.getReviews);
+
+app.post("/addReview", function (req, res) {
+  const enjoyability = req.body.enjoyability;
+  const difficulty = req.body.difficulty;
+  const description = req.body.description;
+  const userID = req.body.userID;
+  const trailID = req.body.trailID;
+  db.addReview(
+    {
+      enjoyability: req.body.enjoyability,
+      difficulty: req.body.difficulty,
+      description: req.body.description,
+      userID: req.body.userID,
+      trailID: req.body.trailID,
+    },
+    res
+  );
+});
+
+app.post("/deleteReview", function (req, res) {
+  db.deleteReview({ reviewID: req.body.reviewID }, res);
+});
+
+app.get("/trailMaps", db.getTrailMaps);
+
+app.post("/addTrailMap", function (req, res) {
+  const trailID = req.body.trailID;
+  const mapID = req.body.mapID;
+  db.addTrailMap(
+    {
+      trailID: trailID,
+      mapID: mapID,
+    },
+    res
+  );
+});
+
+app.post("/deleteTrailMap", function (req, res) {
+  db.deleteTrailMap({ trailID: req.body.trailID }, res);
+});
+
+app.put("/editTrailMap", function (req, res) {
+  const userName = req.body.userName;
+  const contact = req.body.contact;
+  const experienceLevel = req.body.experienceLevel;
+  db.editUser(
+    {
+      userName: userName,
+      contact: contact,
+      experienceLevel: experienceLevel,
+    },
+    res
+  );
+});
+
 const html = `
 <!DOCTYPE html>
 <html>
