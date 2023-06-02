@@ -46,8 +46,10 @@ app.put("/editUser", function (req, res) {
   const userName = req.body.userName;
   const contact = req.body.contact;
   const experienceLevel = req.body.experienceLevel;
+  const userID = req.body.userID;
   db.editUser(
     {
+      userID: userID,
       userName: userName,
       contact: contact,
       experienceLevel: experienceLevel,

@@ -108,10 +108,10 @@ const deleteUser = (request, response) => {
 };
 
 const editUser = (request, response) => {
-  const { userName, contact, experienceLevel } = request;
+  const { userID, userName, contact, experienceLevel } = request;
   console.log(request, "request");
   pool.query(
-    `UPDATE "Users" SET "userName" = '${userName}', "contact" = '${contact}', "experienceLevel" = ${experienceLevel} WHERE "userID" = ${request.userID};`,
+    `UPDATE "Users" SET "userName" = '${userName}', "contact" = '${contact}', "experienceLevel" = ${experienceLevel} WHERE "userID" = ${userID};`,
     (error, result) => {
       if (error) {
         throw error;
