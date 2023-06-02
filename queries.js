@@ -176,6 +176,20 @@ const deleteMap = (request, response) => {
   );
 };
 
+const editMap = (request, response) => {
+  const { mapID, title, url } = request;
+  console.log(request, "request");
+  pool.query(
+    `UPDATE "Maps" SET "title" = '${title}', "url" = '${url}' WHERE "mapID" = ${mapID};`,
+    (error, result) => {
+      if (error) {
+        throw error;
+      }
+      response.send(result);
+    }
+  );
+};
+
 const getTrailMaps = (request, response) => {
   pool.query('SELECT * FROM "TrailMaps"', (error, results) => {
     if (error) {
@@ -255,6 +269,7 @@ module.exports = {
   getMaps,
   addMap,
   deleteMap,
+  editMap,
   getReviews,
   addReview,
   deleteReview,
