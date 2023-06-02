@@ -57,6 +57,21 @@ const editTrail = (request, response) => {
   );
 };
 
+const editReview = (request, response) => {
+  const { reviewID, enjoyability, difficulty, description, userID, trailID } =
+    request;
+  console.log(request, "editReview");
+  pool.query(
+    `UPDATE "Reviews" SET "enjoyability" = '${enjoyability}', "difficulty" = '${difficulty}', "description" = '${description}', "userID" = ${userID}, "trailID" = ${trailID} WHERE "reviewID"=${reviewID};`,
+    (err, res) => {
+      if (err) {
+        throw err;
+      }
+      response.send(res);
+    }
+  );
+};
+
 const getUsers = (request, response) => {
   pool.query('SELECT * FROM "Users"', (error, results) => {
     if (error) {
@@ -273,6 +288,7 @@ module.exports = {
   getReviews,
   addReview,
   deleteReview,
+  editReview,
   getTrailMaps,
   addTrailMap,
   deleteTrailMap,
