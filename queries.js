@@ -176,15 +176,6 @@ const deleteMap = (request, response) => {
   );
 };
 
-const getTrailMaps = (request, response) => {
-  pool.query('SELECT * FROM "TrailMaps"', (error, results) => {
-    if (error) {
-      throw error;
-    }
-    response.send(results.rows);
-  });
-};
-
 const addTrailMap = (request, response) => {
   const { trailID, mapID } = request;
   console.log(request, "request");
@@ -225,6 +216,15 @@ const editTrailMap = (request, response) => {
   );
 };
 
+const getTrailMaps = (request, response) => {
+  pool.query('SELECT * FROM "TrailMaps"', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.send(results.rows);
+  });
+};
+
 module.exports = {
   getUsers,
   addUser,
@@ -244,4 +244,5 @@ module.exports = {
   addTrailMap,
   deleteTrailMap,
   editTrailMap,
+  getTrailMaps,
 };

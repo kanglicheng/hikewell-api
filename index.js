@@ -106,6 +106,8 @@ app.put("/editTrail", function (req, res) {
 
 app.get("/maps", db.getMaps);
 
+app.get("/trailMaps", db.getTrailMaps);
+
 app.post("/addMap", function (req, res) {
   const title = req.body.title;
   const url = req.body.url;
