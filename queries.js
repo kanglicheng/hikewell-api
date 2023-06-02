@@ -191,6 +191,29 @@ const deleteMap = (request, response) => {
   );
 };
 
+const editMap = (request, response) => {
+  const { mapID, title, url } = request;
+  console.log(request, "request");
+  pool.query(
+    `UPDATE "Maps" SET "title" = '${title}', "url" = '${url}' WHERE "mapID" = ${mapID};`,
+    (error, result) => {
+      if (error) {
+        throw error;
+      }
+      response.send(result);
+    }
+  );
+};
+
+const getTrailMaps = (request, response) => {
+  pool.query('SELECT * FROM "TrailMaps"', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.send(results.rows);
+  });
+};
+
 const addTrailMap = (request, response) => {
   const { trailID, mapID } = request;
   console.log(request, "request");
@@ -231,8 +254,17 @@ const editTrailMap = (request, response) => {
   );
 };
 
-const getTrailMaps = (request, response) => {
-  pool.query('SELECT * FROM "TrailMaps"', (error, results) => {
+const usernameDropdown = (request, response) => {
+  pool.query('SELECT "userID", "userName" FROM "Users"', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.send(results.rows);
+  });
+};
+
+const trailDropdown = (request, response) => {
+  pool.query('SELECT "trailID", "name" FROM "Trails"', (error, results) => {
     if (error) {
       throw error;
     }
@@ -252,13 +284,15 @@ module.exports = {
   getMaps,
   addMap,
   deleteMap,
+  editMap,
   getReviews,
   addReview,
   deleteReview,
+  editReview,
   getTrailMaps,
   addTrailMap,
   deleteTrailMap,
   editTrailMap,
-  getTrailMaps,
-  editReview,
+  usernameDropdown,
+  trailDropdown,
 };

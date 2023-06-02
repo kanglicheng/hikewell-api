@@ -144,6 +144,20 @@ app.post("/deleteMap", function (req, res) {
   db.deleteMap({ mapID: req.body.mapID }, res);
 });
 
+app.put("/editMap", function (req, res) {
+  const mapID = req.body.mapID;
+  const title = req.body.title;
+  const url = req.body.url;
+  db.editMap(
+    {
+      mapID: mapID,
+      title: title,
+      url: url,
+    },
+    res
+  );
+});
+
 app.get("/reviews", db.getReviews);
 
 app.post("/addReview", function (req, res) {
@@ -199,6 +213,10 @@ app.put("/editTrailMap", function (req, res) {
     res
   );
 });
+
+app.get("/usernameDropdown", db.usernameDropdown);
+
+app.get("/trailDropdown", db.trailDropdown);
 
 const html = `
 <!DOCTYPE html>
