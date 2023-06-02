@@ -61,7 +61,7 @@ const editReview = (request, response) => {
   const { reviewID, enjoyability, difficulty, description, userID, trailID } =
     request;
   pool.query(
-    `UPDATE "Reviews" SET "enjoyability" = '${enjoyability}', "difficulty" = '${difficulty}', "description" = '${description}', "distance" = ${distance}, "userID" = ${userID} "trailID" = ${trailID} WHERE "reviewID"=${reviewID};`,
+    `UPDATE "Reviews" SET "enjoyability" = '${enjoyability}', "difficulty" = '${difficulty}', "description" = '${description}', "userID" = ${userID} "trailID" = ${trailID} WHERE "reviewID"=${reviewID};`,
     (err, res) => {
       if (err) {
         throw err;
