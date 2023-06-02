@@ -104,6 +104,26 @@ app.put("/editTrail", function (req, res) {
   );
 });
 
+app.put("/editReview", function (req, res) {
+  const reviewID = req.body.reviewID;
+  const enjoyability = req.body.enjoyability;
+  const difficulty = req.body.difficulty;
+  const description = req.body.description;
+  const userID = req.body.userID;
+  const trailID = req.body.trailID;
+  db.editReview(
+    {
+      reviewID: reviewID,
+      enjoyability: enjoyability,
+      difficulty: difficulty,
+      description: description,
+      userID: userID,
+      trailID: trailID,
+    },
+    res
+  );
+});
+
 app.get("/maps", db.getMaps);
 
 app.get("/trailMaps", db.getTrailMaps);
