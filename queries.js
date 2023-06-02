@@ -60,15 +60,16 @@ const editTrail = (request, response) => {
 const editReview = (request, response) => {
   const { reviewID, enjoyability, difficulty, description, userID, trailID } =
     request;
-  pool.query(
-    `UPDATE "Reviews" SET "enjoyability" = '${enjoyability}', "difficulty" = '${difficulty}', "description" = '${description}', "userID" = ${userID}, "trailID" = ${trailID} WHERE "reviewID"=${reviewID};`,
-    (err, res) => {
-      if (err) {
-        throw err;
-      }
-      response.send(res);
-    }
-  );
+  console.log(request, "editReview");
+  // pool.query(
+  //   `UPDATE "Reviews" SET "enjoyability" = '${enjoyability}', "difficulty" = '${difficulty}', "description" = '${description}', "userID" = ${userID}, "trailID" = ${trailID} WHERE "reviewID"=${reviewID};`,
+  //   (err, res) => {
+  //     if (err) {
+  //       throw err;
+  //     }
+  //     response.send(res);
+  //   }
+  // );
 };
 
 const getUsers = (request, response) => {
