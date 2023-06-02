@@ -225,6 +225,24 @@ const editTrailMap = (request, response) => {
   );
 };
 
+const usernameDropdown = (request, response) => {
+  pool.query('SELECT "userID", "userName" FROM "Users"', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.send(results.rows);
+  });
+};
+
+const trailDropdown = (request, response) => {
+  pool.query('SELECT "trailID", "name" FROM "Trails"', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.send(results.rows);
+  });
+};
+
 module.exports = {
   getUsers,
   addUser,
@@ -244,4 +262,6 @@ module.exports = {
   addTrailMap,
   deleteTrailMap,
   editTrailMap,
+  usernameDropdown,
+  trailDropdown,
 };

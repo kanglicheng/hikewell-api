@@ -178,6 +178,10 @@ app.put("/editTrailMap", function (req, res) {
   );
 });
 
+app.get("/usernameDropdown", db.usernameDropdown);
+
+app.get("/trailDropdown", db.trailDropdown);
+
 const html = `
 <!DOCTYPE html>
 <html>
