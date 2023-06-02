@@ -115,6 +115,15 @@ const getMaps = (request, response) => {
   });
 };
 
+const getTrailMaps = (request, response) => {
+  pool.query('SELECT * FROM "TrailMaps"', (error, results) => {
+    if (error) {
+      throw error;
+    }
+    response.send(results.rows);
+  });
+};
+
 module.exports = {
   getUsers,
   addUser,
@@ -125,4 +134,5 @@ module.exports = {
   deleteTrail,
   editTrail,
   getMaps,
+  getTrailMaps,
 };

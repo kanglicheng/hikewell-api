@@ -106,6 +106,8 @@ app.put("/editTrail", function (req, res) {
 
 app.get("/maps", db.getMaps);
 
+app.get("/trailMaps", db.getTrailMaps);
+
 const html = `
 <!DOCTYPE html>
 <html>
