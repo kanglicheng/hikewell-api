@@ -241,10 +241,10 @@ const deleteTrailMap = (request, response) => {
 };
 
 const editTrailMap = (request, response) => {
-  const { trailID, mapID } = request;
+  const { newTrailID, newMapID, trailID, mapID } = request;
   console.log(request, "request");
   pool.query(
-    `UPDATE "TrailMaps" SET "trailID" = ${trailID}, "mapID" = ${mapID} WHERE "trailID" = ${trailID} AND "mapID" = ${mapID};`,
+    `UPDATE "TrailMaps" SET "trailID" = ${newTrailID}, "mapID" = ${newMapID} WHERE "trailID" = ${trailID} AND "mapID" = ${mapID};`,
     (error, result) => {
       if (error) {
         throw error;

@@ -203,10 +203,14 @@ app.post("/deleteTrailMap", function (req, res) {
 });
 
 app.put("/editTrailMap", function (req, res) {
+  const newTrailID = req.body.newTrailID;
+  const newMapID = req.body.newMapID;
   const trailID = req.body.trailID;
   const mapID = req.body.mapID;
-  db.editUser(
+  db.editTrailMap(
     {
+      newTrailID: newTrailID,
+      newMapID: newMapID,
       trailID: trailID,
       mapID: mapID,
     },
