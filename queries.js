@@ -61,8 +61,10 @@ const editReview = (request, response) => {
   const { reviewID, enjoyability, difficulty, description, userID, trailID } =
     request;
   console.log(request, "editReview");
+  var nullableUserID = userID;
+  if(nullableUserID == 0) nullableUserID = null;
   pool.query(
-    `UPDATE "Reviews" SET "enjoyability" = '${enjoyability}', "difficulty" = '${difficulty}', "description" = '${description}', "userID" = ${userID}, "trailID" = ${trailID} WHERE "reviewID"=${reviewID};`,
+    `UPDATE "Reviews" SET "enjoyability" = '${enjoyability}', "difficulty" = '${difficulty}', "description" = '${description}', "userID" = ${nullableUserID}, "trailID" = ${trailID} WHERE "reviewID"=${reviewID};`,
     (err, res) => {
       if (err) {
         throw err;
@@ -133,8 +135,10 @@ const getReviews = (request, response) => {
 const addReview = (request, response) => {
   const { enjoyability, difficulty, description, userID, trailID } = request;
   console.log(request, "request");
+  var nullableUserID = userID;
+  if(nullableUserID == 0) nullableUserID = null;
   pool.query(
-    `INSERT INTO "Reviews" ("enjoyability", "difficulty", "description", "userID", "trailID") VALUES ('${enjoyability}', '${difficulty}', '${description}', ${userID}, ${trailID});`,
+    `INSERT INTO "Reviews" ("enjoyability", "difficulty", "description", "userID", "trailID") VALUES ('${enjoyability}', '${difficulty}', '${description}', ${nullableUserID}, ${trailID});`,
     (error, result) => {
       if (error) {
         throw error;
