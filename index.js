@@ -199,7 +199,7 @@ app.post("/addTrailMap", function (req, res) {
 });
 
 app.post("/deleteTrailMap", function (req, res) {
-  db.deleteTrailMap({ trailID: req.body.trailID }, res);
+  db.deleteTrailMap({ trailID: req.body.trailID, mapID: req.body.mapID }, res);
 });
 
 app.put("/editTrailMap", function (req, res) {
@@ -217,10 +217,6 @@ app.put("/editTrailMap", function (req, res) {
     res
   );
 });
-
-app.get("/usernameDropdown", db.usernameDropdown);
-
-app.get("/trailDropdown", db.trailDropdown);
 
 const html = `
 <!DOCTYPE html>
