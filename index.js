@@ -199,26 +199,24 @@ app.post("/addTrailMap", function (req, res) {
 });
 
 app.post("/deleteTrailMap", function (req, res) {
-  db.deleteTrailMap({ trailID: req.body.trailID }, res);
+  db.deleteTrailMap({ trailID: req.body.trailID, mapID: req.body.mapID }, res);
 });
 
 app.put("/editTrailMap", function (req, res) {
-  const userName = req.body.userName;
-  const contact = req.body.contact;
-  const experienceLevel = req.body.experienceLevel;
-  db.editUser(
+  const newTrailID = req.body.newTrailID;
+  const newMapID = req.body.newMapID;
+  const trailID = req.body.trailID;
+  const mapID = req.body.mapID;
+  db.editTrailMap(
     {
-      userName: userName,
-      contact: contact,
-      experienceLevel: experienceLevel,
+      newTrailID: newTrailID,
+      newMapID: newMapID,
+      trailID: trailID,
+      mapID: mapID,
     },
     res
   );
 });
-
-app.get("/usernameDropdown", db.usernameDropdown);
-
-app.get("/trailDropdown", db.trailDropdown);
 
 const html = `
 <!DOCTYPE html>

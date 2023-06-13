@@ -57,21 +57,6 @@ const editTrail = (request, response) => {
   );
 };
 
-const editReview = (request, response) => {
-  const { reviewID, enjoyability, difficulty, description, userID, trailID } =
-    request;
-  console.log(request, "editReview");
-  pool.query(
-    `UPDATE "Reviews" SET "enjoyability" = '${enjoyability}', "difficulty" = '${difficulty}', "description" = '${description}', "userID" = ${userID}, "trailID" = ${trailID} WHERE "reviewID"=${reviewID};`,
-    (err, res) => {
-      if (err) {
-        throw err;
-      }
-      response.send(res);
-    }
-  );
-};
-
 const getUsers = (request, response) => {
   pool.query('SELECT * FROM "Users"', (error, results) => {
     if (error) {
@@ -133,8 +118,10 @@ const getReviews = (request, response) => {
 const addReview = (request, response) => {
   const { enjoyability, difficulty, description, userID, trailID } = request;
   console.log(request, "request");
+  var nullableUserID = userID;
+  if(nullableUserID == 0) nullableUserID = null;
   pool.query(
-    `INSERT INTO "Reviews" ("enjoyability", "difficulty", "description", "userID", "trailID") VALUES ('${enjoyability}', '${difficulty}', '${description}', ${userID}, ${trailID});`,
+    `INSERT INTO "Reviews" ("enjoyability", "difficulty", "description", "userID", "trailID") VALUES ('${enjoyability}', '${difficulty}', '${description}', ${nullableUserID}, ${trailID});`,
     (error, result) => {
       if (error) {
         throw error;
@@ -152,6 +139,23 @@ const deleteReview = (request, response) => {
         throw error;
       }
       response.send(result);
+    }
+  );
+};
+
+const editReview = (request, response) => {
+  const { reviewID, enjoyability, difficulty, description, userID, trailID } =
+    request;
+  console.log(request, "editReview");
+  var nullableUserID = userID;
+  if(nullableUserID == 0) nullableUserID = null;
+  pool.query(
+    `UPDATE "Reviews" SET "enjoyability" = '${enjoyability}', "difficulty" = '${difficulty}', "description" = '${description}', "userID" = ${nullableUserID}, "trailID" = ${trailID} WHERE "reviewID"=${reviewID};`,
+    (err, res) => {
+      if (err) {
+        throw err;
+      }
+      response.send(res);
     }
   );
 };
@@ -229,8 +233,9 @@ const addTrailMap = (request, response) => {
 };
 
 const deleteTrailMap = (request, response) => {
+  console.log(request, "request");
   pool.query(
-    `DELETE FROM "TrailMaps" WHERE "trailID" ='${request.trailID}'`,
+    `DELETE FROM "TrailMaps" WHERE "trailID" ='${request.trailID}' AND "mapID" = ${request.mapID}`,
     (error, result) => {
       if (error) {
         throw error;
@@ -241,10 +246,10 @@ const deleteTrailMap = (request, response) => {
 };
 
 const editTrailMap = (request, response) => {
-  const { trailID, mapID } = request;
+  const { newTrailID, newMapID, trailID, mapID } = request;
   console.log(request, "request");
   pool.query(
-    `UPDATE "TrailMaps" SET "trailID" = ${trailID}, "mapID" = ${mapID} WHERE "trailID" = ${trailID} AND "mapID" = ${mapID};`,
+    `UPDATE "TrailMaps" SET "trailID" = ${newTrailID}, "mapID" = ${newMapID} WHERE "trailID" = ${trailID} AND "mapID" = ${mapID};`,
     (error, result) => {
       if (error) {
         throw error;
@@ -252,24 +257,6 @@ const editTrailMap = (request, response) => {
       response.send(result);
     }
   );
-};
-
-const usernameDropdown = (request, response) => {
-  pool.query('SELECT "userID", "userName" FROM "Users"', (error, results) => {
-    if (error) {
-      throw error;
-    }
-    response.send(results.rows);
-  });
-};
-
-const trailDropdown = (request, response) => {
-  pool.query('SELECT "trailID", "name" FROM "Trails"', (error, results) => {
-    if (error) {
-      throw error;
-    }
-    response.send(results.rows);
-  });
 };
 
 module.exports = {
@@ -293,6 +280,4 @@ module.exports = {
   addTrailMap,
   deleteTrailMap,
   editTrailMap,
-  usernameDropdown,
-  trailDropdown,
 };
