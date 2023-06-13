@@ -1,11 +1,12 @@
 const Pool = require("pg").Pool;
+require('dotenv').config()
 
 const pool = new Pool({
-  user: "postgres",
-  host: "db.qpbxvieyupoknstmdnur.supabase.co",
+  user: process.env.DB_USER,
+  host: process.env.DB_URL,
   database: "postgres",
-  port: 6543,
-  password: "hikewell2020!",
+  port: Number(process.env.DB_PORT),
+  password: process.env.DB_PASS,
 });
 
 const getTrails = (request, response) => {
